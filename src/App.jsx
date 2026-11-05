@@ -83,7 +83,7 @@ const sectores = [
 
 function App() {
   const [theme, setTheme] = useState("light");
-  const [scrolled, setScrolled] = useState(false);
+  const [navbarHidden, setNavbarHidden] = useState(false);
   const [selectedService, setSelectedService] = useState(null);
   const serviceDialogRef = useRef(null);
   const navigateToContactRef = useRef(false);
@@ -140,9 +140,39 @@ function App() {
   }, [selectedService]);
 
   useLayoutEffect(() => {
-    const updateScrollState = () => setScrolled(window.scrollY > 32);
-    updateScrollState();
-    window.addEventListener("scroll", updateScrollState, { passive: true });
+    let previousY = window.scrollY;
+    let accumulatedDelta = 0;
+    let previousDirection = 0;
+    let isHidden = false;
+    let lastPublishedHidden = false;
+
+    const updateNavbarVisibility = () => {
+      const currentY = Math.max(0, window.scrollY);
+      const delta = currentY - previousY;
+
+      if (currentY <= 72) {
+        accumulatedDelta = 0;
+        previousDirection = 0;
+        isHidden = false;
+      } else if (delta !== 0) {
+        const direction = Math.sign(delta);
+        if (direction !== previousDirection) accumulatedDelta = 0;
+        accumulatedDelta += delta;
+        previousDirection = direction;
+
+        if (accumulatedDelta > 12) isHidden = true;
+        if (accumulatedDelta < -12) isHidden = false;
+      }
+
+      previousY = currentY;
+      if (isHidden !== lastPublishedHidden) {
+        lastPublishedHidden = isHidden;
+        setNavbarHidden(isHidden);
+      }
+    };
+
+    window.addEventListener("scroll", updateNavbarVisibility, { passive: true });
+    updateNavbarVisibility();
 
     const targets = document.querySelectorAll(
       ".section-heading, .service-card, .about-photo, .about-copy, .values article, .sectors > .eyebrow, .sectors > h2, .sectors > p:not(.eyebrow), .sector-grid article, .contact-info > *, .contact-form, .footer > div",
@@ -154,7 +184,7 @@ function App() {
     if (!("IntersectionObserver" in window)) {
       targets.forEach((element) => element.classList.add("is-visible"));
       return () => {
-        window.removeEventListener("scroll", updateScrollState);
+        window.removeEventListener("scroll", updateNavbarVisibility);
         root.classList.remove("has-scroll-reveal");
       };
     }
@@ -173,7 +203,7 @@ function App() {
     targets.forEach((element) => observer.observe(element));
 
     return () => {
-      window.removeEventListener("scroll", updateScrollState);
+      window.removeEventListener("scroll", updateNavbarVisibility);
       observer.disconnect();
       root.classList.remove("has-scroll-reveal");
     };
@@ -183,7 +213,7 @@ function App() {
     <div className={`app app--${theme}`}>
       <Navbar
         theme={theme}
-        scrolled={scrolled}
+        hidden={navbarHidden}
         onToggleTheme={() => setTheme((actual) => (actual === "light" ? "dark" : "light"))}
       />
       <Hero />

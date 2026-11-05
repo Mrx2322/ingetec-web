@@ -10,7 +10,7 @@ const enlaces = [
   { texto: "Contacto", href: "#contacto" },
 ];
 
-function Navbar({ theme = "dark", scrolled = false, onToggleTheme }) {
+function Navbar({ theme = "dark", hidden = false, onToggleTheme }) {
   const [menuAbierto, setMenuAbierto] = useState(false);
   const modoOscuro = theme === "dark";
 
@@ -40,7 +40,7 @@ function Navbar({ theme = "dark", scrolled = false, onToggleTheme }) {
 
   return (
     <header
-      className={`navbar ${modoOscuro ? "navbar--dark" : "navbar--light"} ${scrolled ? "navbar--scrolled" : ""}`}
+      className={`navbar ${modoOscuro ? "navbar--dark" : "navbar--light"} ${hidden ? "navbar--hidden" : ""}`}
     >
       <nav className="navbar__glass" aria-label="Navegación principal">
         <a

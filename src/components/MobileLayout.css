@@ -1,7 +1,11 @@
 @media (max-width: 850px) {
   .navbar {
     top: 8px;
-    width: calc(100% - 20px);
+    right: 0;
+    left: 0;
+    width: min(calc(100% - 24px), 680px);
+    max-width: 680px;
+    margin: 0 auto;
     padding: 0;
   }
 
