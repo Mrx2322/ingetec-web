@@ -1,0 +1,232 @@
+.service-dialog {
+  position: fixed;
+  width: min(580px, calc(100% - 32px));
+  max-width: 580px;
+  max-height: min(620px, calc(100% - 32px));
+  padding: 0;
+  overflow: auto;
+  border: 1px solid rgba(130, 160, 195, 0.24);
+  border-radius: 24px;
+  background: var(--surface);
+  color: var(--navy);
+  box-shadow: 0 28px 90px rgba(5, 22, 45, 0.32);
+}
+
+.service-dialog[open] {
+  animation: service-dialog-enter 320ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.service-dialog::backdrop {
+  background: rgba(4, 18, 36, 0.64);
+  backdrop-filter: blur(7px);
+  animation: service-backdrop-enter 240ms ease both;
+}
+
+.service-dialog__panel {
+  position: relative;
+  display: grid;
+  grid-template-columns: 162px minmax(0, 1fr);
+  min-height: 390px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 100% 0, rgba(8, 101, 207, 0.07), transparent 42%),
+    var(--surface);
+}
+
+.service-dialog__image {
+  min-height: 100%;
+  overflow: hidden;
+  background: #dce8f5;
+}
+
+.service-dialog__image img {
+  width: 100%;
+  height: 100%;
+  min-height: 390px;
+  object-fit: cover;
+  transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.service-dialog:hover .service-dialog__image img {
+  transform: scale(1.045);
+}
+
+.service-dialog__content {
+  align-self: center;
+  padding: 40px 34px 32px;
+}
+
+.service-dialog__icon {
+  width: 42px;
+  height: 42px;
+  margin: 0 0 13px;
+  border: 1px solid rgba(8, 101, 207, 0.14);
+  background: color-mix(in srgb, var(--surface) 88%, var(--blue));
+  box-shadow: 0 6px 18px rgba(8, 52, 99, 0.12);
+}
+
+.service-dialog__content .eyebrow {
+  margin: 0 0 6px;
+  color: var(--blue);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.17em;
+}
+
+.service-dialog__content h2 {
+  margin: 0 28px 10px 0;
+  font-size: clamp(21px, 2.5vw, 26px);
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+}
+
+.service-dialog__content > p:not(.eyebrow) {
+  margin: 0 0 16px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.service-dialog__content h3 {
+  margin: 0 0 8px;
+  font-size: 12px;
+}
+
+.service-dialog__content ul {
+  display: grid;
+  gap: 7px;
+  padding: 0;
+  margin: 0 0 18px;
+  list-style: none;
+}
+
+.service-dialog__content li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.service-dialog__content li svg {
+  flex: 0 0 16px;
+  margin-top: 0;
+  color: var(--blue);
+  stroke-width: 2.5;
+}
+
+.service-dialog__content .button {
+  width: fit-content;
+  min-height: 40px;
+  padding-inline: 16px;
+  border-radius: 9px;
+  font-size: 11px;
+}
+
+.service-dialog__content .button svg {
+  transition: transform 220ms ease;
+}
+
+.service-dialog__content .button:hover svg {
+  transform: translateX(3px);
+}
+
+.service-dialog__close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 1;
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 1px solid rgba(120, 148, 180, 0.2);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--surface) 90%, transparent);
+  color: var(--navy);
+  box-shadow: 0 4px 12px rgba(5, 22, 45, 0.08);
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition:
+    transform 240ms cubic-bezier(0.22, 1, 0.36, 1),
+    background 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.service-dialog__close:hover {
+  transform: rotate(90deg);
+  background: var(--surface);
+  box-shadow: 0 7px 18px rgba(5, 22, 45, 0.14);
+}
+
+.app--dark .service-dialog {
+  border-color: rgba(166, 201, 239, 0.18);
+}
+
+@keyframes service-dialog-enter {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.965);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes service-backdrop-enter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 560px) {
+  .service-dialog {
+    width: min(420px, calc(100% - 24px));
+    max-height: calc(100% - 24px);
+    border-radius: 20px;
+  }
+
+  .service-dialog__panel {
+    grid-template-columns: 1fr;
+  }
+
+  .service-dialog__image {
+    height: 112px;
+    min-height: 0;
+  }
+
+  .service-dialog__image img {
+    height: 112px;
+    min-height: 0;
+  }
+
+  .service-dialog__content {
+    padding: 22px;
+  }
+
+  .service-dialog__icon {
+    display: none;
+  }
+}
+
+@media (max-width: 360px) {
+  .service-dialog__content {
+    padding-inline: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service-dialog[open],
+  .service-dialog::backdrop,
+  .service-dialog__close,
+  .service-dialog__image img,
+  .service-dialog__content .button svg {
+    animation: none;
+    transition: none;
+  }
+}

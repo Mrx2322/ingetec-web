@@ -1,0 +1,86 @@
+.skeleton-image {
+  position: absolute;
+  inset: 0;
+  display: block;
+  overflow: hidden;
+  background: #e7eef5;
+}
+
+.skeleton-image__placeholder {
+  position: absolute;
+  inset: 0;
+  background-color: #e7eef5;
+  background-image: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.72) 48%,
+    transparent 66%
+  );
+  background-size: 220% 100%;
+  animation: image-skeleton-shimmer 1.5s linear infinite;
+}
+
+.skeleton-image__asset {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 240ms ease;
+}
+
+.skeleton-image[data-image-state="loaded"] .skeleton-image__asset {
+  opacity: 1;
+}
+
+.skeleton-image__fallback {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: #e7eef5;
+  color: #42556b;
+  font-size: 12px;
+  text-align: center;
+}
+
+.app--dark .skeleton-image,
+.app--dark .skeleton-image__placeholder,
+.app--dark .skeleton-image__fallback {
+  background-color: #142b45;
+}
+
+.app--dark .skeleton-image__placeholder {
+  background-image: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.12) 48%,
+    transparent 66%
+  );
+}
+
+.app--dark .skeleton-image__fallback {
+  color: #d5dfeb;
+}
+
+@keyframes image-skeleton-shimmer {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: -120% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-image__placeholder {
+    animation: none;
+    background-image: none;
+  }
+
+  .skeleton-image__asset {
+    transition: none;
+  }
+}

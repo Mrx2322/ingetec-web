@@ -1,0 +1,50 @@
+.hero__scroll {
+  animation: scroll-indicator-bounce 1.35s cubic-bezier(0.35, 0.08, 0.35, 1) infinite;
+  box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.28);
+  transition:
+    background 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.hero__scroll svg {
+  animation: scroll-arrow-nudge 1.35s ease-in-out infinite;
+}
+
+.hero__scroll:hover,
+.hero__scroll:focus-visible {
+  animation-play-state: paused;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.1);
+}
+
+.hero__scroll:hover svg,
+.hero__scroll:focus-visible svg {
+  animation-play-state: paused;
+}
+
+@keyframes scroll-indicator-bounce {
+  0%,
+  100% {
+    transform: translate(-50%, 0);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.2);
+  }
+  38% {
+    transform: translate(-50%, 11px);
+    box-shadow: 0 0 0 7px rgba(255, 255, 255, 0.08);
+  }
+  58% {
+    transform: translate(-50%, 3px);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.04);
+  }
+}
+
+@keyframes scroll-arrow-nudge {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  38%,
+  58% {
+    transform: translateY(3px);
+  }
+}

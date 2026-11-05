@@ -1,0 +1,557 @@
+/* Apple-inspired visual polish, while preserving INGETEC's imagery and yellow brand accent. */
+.app {
+  --navy: #1d1d1f;
+  --blue: #0071e3;
+  --yellow: #ffd500;
+  --muted: #1d1d1f;
+  --line: #d2d2d7;
+  --surface: #fff;
+  color: var(--navy);
+  background: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
+  letter-spacing: -0.012em;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition:
+    color 400ms ease,
+    background-color 400ms ease;
+}
+
+.app--dark {
+  --navy: #f4f7fc;
+  --blue: #0865cf;
+  --muted: #bcc9da;
+  --line: #304158;
+  --surface: #11253e;
+  color: var(--navy);
+  background: #071a30;
+  color-scheme: dark;
+}
+
+.app :is(h1, h2, h3, p, a, button, input, textarea) {
+  font-family: inherit;
+}
+
+.app :is(.section, .contact) {
+  scroll-margin-top: 96px;
+}
+
+.section {
+  padding-top: clamp(64px, 7vw, 104px);
+  padding-bottom: clamp(64px, 7vw, 104px);
+}
+
+.section-heading {
+  margin-bottom: 32px;
+}
+
+.section h2,
+.about h2,
+.contact h2,
+.sectors h2 {
+  font-size: clamp(32px, 4.2vw, 54px);
+  line-height: 1.04;
+  letter-spacing: -0.055em;
+  font-weight: 720;
+}
+
+.eyebrow {
+  letter-spacing: 0.16em;
+  font-size: 11px;
+}
+
+.section-lead,
+.about-copy > p:not(.eyebrow),
+.sectors > p:not(.eyebrow) {
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.text-link {
+  transition:
+    gap 220ms ease,
+    opacity 220ms ease;
+}
+
+.text-link:hover {
+  gap: 12px;
+  opacity: 0.78;
+}
+
+/* Navigation stays fixed and becomes a quieter, more refined glass surface. */
+.navbar__glass {
+  min-height: 68px;
+  padding-inline: 22px;
+  border-color: rgba(255, 255, 255, 0.56);
+  border-radius: 22px;
+  background: rgba(250, 250, 252, 0.72);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+}
+
+.navbar__glass:hover {
+  background: rgba(250, 250, 252, 0.82);
+  box-shadow: 0 12px 38px rgba(0, 0, 0, 0.13);
+}
+
+.navbar--dark .navbar__glass,
+.navbar--dark .navbar__glass:hover {
+  border-color: rgba(255, 255, 255, 0.16);
+  background: rgba(20, 20, 22, 0.76);
+}
+
+.navbar__link {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.navbar__link::after {
+  height: 2px;
+  border-radius: 2px;
+}
+
+.button {
+  transition:
+    transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 260ms ease,
+    background-color 260ms ease;
+}
+
+/* Service cards: generous spacing, soft depth and restrained hover lift. */
+.services {
+  background: #f5f5f7;
+  transition: background-color 400ms ease;
+}
+
+.app--dark .services {
+  background: #071a30;
+}
+
+.service-grid {
+  gap: 20px;
+}
+
+.service-card {
+  border-color: rgba(0, 0, 0, 0.045);
+  border-radius: 22px;
+  background: var(--surface);
+  box-shadow: 0 3px 16px rgba(0, 0, 0, 0.055);
+  transition:
+    transform 380ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 380ms ease,
+    border-color 380ms ease,
+    background-color 380ms ease;
+}
+
+.app--dark .service-card {
+  border-color: #304158;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.11);
+}
+
+.app--dark .service-card:hover {
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.36);
+}
+
+.service-image {
+  height: clamp(150px, 17vw, 220px);
+  background: #e8e8ed;
+}
+
+.service-image .skeleton-image__asset {
+  transition: transform 700ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.service-card:hover .service-image .skeleton-image__asset {
+  transform: scale(1.035);
+}
+
+.service-copy {
+  padding: 18px 20px 20px;
+}
+
+.service-icon {
+  width: 48px;
+  height: 48px;
+  margin-top: -40px;
+  margin-bottom: 15px;
+  border: 3px solid var(--surface);
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.1);
+}
+
+.service-copy h3 {
+  font-size: 17px;
+  letter-spacing: -0.025em;
+}
+
+.service-copy p {
+  min-height: 54px;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.service-copy > a {
+  width: 36px;
+  height: 36px;
+  margin-top: 14px;
+  border-width: 1.5px;
+  transition:
+    color 220ms ease,
+    background 220ms ease,
+    transform 220ms ease;
+}
+
+.service-copy > a:hover {
+  transform: translateX(3px);
+  background: var(--blue);
+  color: #fff;
+}
+
+/* About keeps the existing full-height photo and its custom curved edge. */
+.about {
+  background: linear-gradient(110deg, #f5f5f7 0%, #fff 72%);
+  transition: background 400ms ease;
+}
+
+.app--dark .about {
+  background: linear-gradient(105deg, #102b49, #11253e);
+}
+
+.about-copy {
+  padding-top: clamp(36px, 5vw, 72px);
+  padding-bottom: clamp(36px, 5vw, 72px);
+}
+
+.values {
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.values article {
+  padding: 20px;
+  border-color: rgba(0, 113, 227, 0.12);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.035);
+  transition:
+    transform 260ms ease,
+    box-shadow 260ms ease,
+    background-color 400ms ease;
+}
+
+.values article:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.075);
+}
+
+.app--dark .values article {
+  border-color: #304158;
+  background: #142c47;
+}
+
+.values h3 {
+  font-size: 15px;
+}
+
+.values article p {
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.team-badge {
+  border-radius: 20px;
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(22px) saturate(150%);
+}
+
+/* Preserve the original sector section silhouette and image treatment. */
+.sector-grid article {
+  min-height: 112px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.075);
+  backdrop-filter: blur(12px) saturate(135%);
+  transition:
+    transform 280ms ease,
+    background-color 280ms ease,
+    border-color 280ms ease;
+}
+
+.sector-grid article:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.14);
+}
+
+/* Contact and footer use the same restrained surface and type system. */
+.contact {
+  gap: clamp(36px, 8vw, 120px);
+  padding-top: clamp(64px, 7vw, 96px);
+  padding-bottom: clamp(64px, 7vw, 96px);
+  background: #f5f5f7;
+  transition: background-color 400ms ease;
+}
+
+.app--dark .contact {
+  background: #10243c;
+}
+
+.contact-detail {
+  margin-top: 10px;
+  padding: 14px 18px;
+  border-color: rgba(0, 0, 0, 0.055);
+  border-radius: 18px;
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.035);
+  transition:
+    transform 240ms ease,
+    box-shadow 240ms ease;
+}
+
+.contact-detail:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 9px 24px rgba(0, 0, 0, 0.08);
+}
+
+.app--dark .contact-detail,
+.app--dark .contact-form {
+  border-color: #304158;
+  background: #11253e;
+}
+
+.contact-form {
+  gap: 14px;
+  padding: clamp(22px, 3vw, 34px);
+  border-color: rgba(0, 0, 0, 0.055);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.055);
+}
+
+.contact-form h3 {
+  font-size: 22px;
+  letter-spacing: -0.035em;
+}
+
+.contact-form > p {
+  font-size: 13px;
+}
+
+.contact-form label {
+  gap: 7px;
+  font-size: 12px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 13px 14px;
+  border-radius: 12px;
+  font-size: 13px;
+  transition:
+    border-color 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.contact-form :is(input, textarea):focus {
+  border-color: var(--blue);
+  outline: none;
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--blue) 18%, transparent);
+}
+
+.button {
+  min-height: 48px;
+  border-radius: 999px;
+}
+
+.button--yellow {
+  box-shadow: 0 5px 16px rgba(255, 213, 0, 0.2);
+}
+
+.footer {
+  background: #071a30;
+  color: #f5f5f7;
+}
+
+.footer-brand p,
+.footer small,
+.footer > div:not(.footer-brand) > a {
+  color: #a1a1a6;
+}
+
+.footer > div:not(.footer-brand) > a {
+  transition: color 180ms ease;
+}
+
+.footer > div:not(.footer-brand) > a:hover {
+  color: #fff;
+}
+
+.back-top {
+  width: 42px;
+  height: 42px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  transition: transform 220ms ease;
+}
+
+.back-top:hover {
+  transform: translateY(-3px);
+}
+
+@media (max-width: 850px) {
+  .navbar__glass {
+    min-height: 66px;
+    padding-inline: 16px;
+  }
+
+  .navbar__navigation {
+    border-radius: 20px;
+  }
+
+  .section {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+
+  .service-grid {
+    gap: 14px;
+  }
+
+  .service-image {
+    height: clamp(130px, 28vw, 190px);
+  }
+
+  .about {
+    padding-top: 28px;
+  }
+
+  .about-photo {
+    border-radius: 22px;
+  }
+
+  .contact {
+    gap: 28px;
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+}
+
+@media (max-width: 560px) {
+  .section-heading {
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .section h2,
+  .about h2,
+  .contact h2,
+  .sectors h2 {
+    font-size: clamp(29px, 8vw, 38px);
+  }
+
+  .section-lead,
+  .about-copy > p:not(.eyebrow),
+  .sectors > p:not(.eyebrow) {
+    font-size: 14px;
+  }
+
+  .service-grid {
+    gap: 12px;
+  }
+
+  .service-card {
+    border-radius: 18px;
+  }
+
+  .service-image {
+    height: 132px;
+  }
+
+  .service-copy {
+    padding: 20px 12px 14px;
+  }
+
+  .service-icon {
+    width: 42px;
+    height: 42px;
+    margin-top: -37px;
+    margin-bottom: 12px;
+  }
+
+  .service-copy h3 {
+    font-size: 14px;
+  }
+
+  .service-copy p {
+    min-height: 60px;
+    font-size: 11px;
+  }
+
+  .about {
+    padding-top: 18px;
+  }
+
+  .about-copy {
+    padding-top: 8px;
+    padding-bottom: 18px;
+  }
+
+  .values article {
+    padding: 14px;
+    border-radius: 17px;
+  }
+
+  .values article p {
+    font-size: 11px;
+  }
+
+  .contact-form {
+    border-radius: 20px;
+  }
+
+  .footer {
+    background: #071a30;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app *,
+  .app *::before,
+  .app *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Contact cards: clearer hierarchy and a calm brand accent. */
+.contact-detail > span {
+  border: 1px solid #c7def8;
+  background: #f1f7ff;
+}
+
+.contact-detail strong {
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.contact-detail:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--blue) 35%, transparent);
+  outline-offset: 3px;
+}
+
+.app--dark .contact-detail > span {
+  border-color: #3c6289;
+  background: #173455;
+}
+
+.app--dark .contact-detail--address {
+  background: #11253e;
+  color: #f4f7fc;
+}
+
+.app--dark .contact-detail--address strong {
+  color: #f4f7fc;
+}
