@@ -16,20 +16,23 @@
   right: 0;
   left: 0;
   transition:
-    transform 280ms cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 200ms ease,
+    transform 420ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 320ms ease,
+    filter 320ms ease,
     visibility 0s linear;
 }
 
 .navbar--hidden {
   transform: translate3d(0, calc(-100% - 14px), 0);
   opacity: 0;
+  filter: blur(2px);
   visibility: hidden;
   pointer-events: none;
   transition:
-    transform 280ms cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 200ms ease,
-    visibility 0s linear 280ms;
+    transform 420ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 320ms ease,
+    filter 320ms ease,
+    visibility 0s linear 420ms;
 }
 
 .navbar__glass {
@@ -440,7 +443,17 @@
 
 @media (prefers-reduced-motion: reduce) {
   .navbar {
-    transition: none;
+    transition:
+      opacity 180ms ease,
+      visibility 0s linear;
+  }
+
+  .navbar--hidden {
+    transform: none;
+    filter: none;
+    transition:
+      opacity 180ms ease,
+      visibility 0s linear 180ms;
   }
 
   .navbar *,
