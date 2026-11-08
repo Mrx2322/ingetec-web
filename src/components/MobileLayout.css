@@ -16,6 +16,9 @@
   }
 
   .hero {
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: calc(50% - 50vw);
     padding: 112px 22px 70px;
   }
 
