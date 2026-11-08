@@ -449,6 +449,11 @@
   object-fit: cover;
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.35);
 }
+.socials img[alt="TikTok"] {
+  padding: 3px;
+  background: #fff;
+  box-shadow: 0 0 0 1px #fff;
+}
 .back-top {
   position: absolute;
   top: 18px;
