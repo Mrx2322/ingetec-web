@@ -10,9 +10,14 @@
   }
 
   .navbar__glass {
-    min-height: 62px;
+    min-height: 72px;
     padding: 7px 12px;
     border-radius: 16px;
+  }
+
+  .navbar__logo {
+    width: clamp(160px, 47vw, 215px);
+    max-height: 50px;
   }
 
   .hero {
@@ -114,13 +119,8 @@
   }
 
   .navbar__glass {
-    min-height: 60px;
+    min-height: 72px;
     border-radius: 15px;
-  }
-
-  .navbar__logo {
-    width: clamp(145px, 42vw, 175px);
-    max-height: 40px;
   }
 
   .navbar__menu-toggle {
