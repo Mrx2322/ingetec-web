@@ -82,7 +82,7 @@ const sectores = [
 ];
 
 function App() {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("dark");
   const [navbarHidden, setNavbarHidden] = useState(false);
   const [selectedService, setSelectedService] = useState(null);
   const serviceDialogRef = useRef(null);
