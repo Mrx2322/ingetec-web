@@ -354,13 +354,13 @@ function App() {
                 </strong>
               </div>
             </a>
-            <a className="contact-detail" href="mailto:Ingetec.electroMecanica@gmail.com">
+            <a className="contact-detail" href="mailto:ingetec.electromecanica@gmail.com">
               <span>
                 <Mail />
               </span>
               <div>
                 <small>Correo electrónico</small>
-                <strong>Ingetec.electroMecanica@gmail.com</strong>
+                <strong>ingetec.electromecanica@gmail.com</strong>
               </div>
             </a>
             <div className="contact-detail contact-detail--address">
@@ -379,7 +379,7 @@ function App() {
           </div>
           <form
             className="contact-form"
-            action="mailto:Ingetec.electroMecanica@gmail.com"
+            action="mailto:ingetec.electromecanica@gmail.com"
             method="post"
             encType="text/plain"
           >
@@ -491,7 +491,11 @@ function App() {
         </div>
         <div>
           <h3>Síguenos</h3>
-          <p className="socials">in&nbsp;&nbsp;◎&nbsp;&nbsp;◉&nbsp;&nbsp;▶</p>
+          <div className="socials" aria-label="Redes sociales">
+            <img src="/assets/social-instagram.png" alt="Instagram" />
+            <img src="/assets/social-facebook.png" alt="Facebook" />
+            <img src="/assets/social-tiktok.png" alt="TikTok" />
+          </div>
           <small>
             © 2026 INGETEC Ingeniería &amp; Servicios.
             <br />

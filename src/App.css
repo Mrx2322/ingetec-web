@@ -436,8 +436,18 @@
   line-height: 1.5;
 }
 .socials {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   color: #fff;
-  letter-spacing: 0.12em;
+}
+.socials img {
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.35);
 }
 .back-top {
   position: absolute;
