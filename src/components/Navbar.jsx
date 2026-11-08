@@ -50,7 +50,11 @@ function Navbar({ theme = "dark", hidden = false, onToggleTheme }) {
           onClick={cerrarMenu}
         >
           <img
-            src="/assets/logo-ingetec.png"
+            src={
+              modoOscuro
+                ? "/assets/logo-ingetec-cobalt-transparent.png"
+                : "/assets/logo-ingetec-navy-transparent.png"
+            }
             alt="INGETEC Ingeniería y Servicios"
             className="navbar__logo"
           />
