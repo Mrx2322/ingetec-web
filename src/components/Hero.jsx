@@ -45,20 +45,26 @@ function Hero() {
         <div className="hero__features">
           <span>
             <ShieldCheck />
-            Calidad
-            <br />y seguridad
+            <span>
+              Calidad
+              <br />y seguridad
+            </span>
           </span>
           <span>
             <Settings />
-            Soluciones
-            <br />
-            integrales
+            <span>
+              Soluciones
+              <br />
+              integrales
+            </span>
           </span>
           <span>
             <ChartNoAxesColumnIncreasing />
-            Asesoría
-            <br />
-            técnica especializada
+            <span>
+              Asesoría
+              <br />
+              técnica especializada
+            </span>
           </span>
         </div>
       </div>
