@@ -85,8 +85,51 @@ function App() {
   const [theme, setTheme] = useState("dark");
   const [navbarHidden, setNavbarHidden] = useState(false);
   const [selectedService, setSelectedService] = useState(null);
+  const [contactSending, setContactSending] = useState(false);
+  const [contactStatus, setContactStatus] = useState(null);
   const serviceDialogRef = useRef(null);
   const navigateToContactRef = useRef(false);
+
+  const handleContactSubmit = async (event) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const values = Object.fromEntries(new FormData(form).entries());
+
+    values._subject = "Nueva solicitud de cotización - INGETEC";
+    values._template = "table";
+
+    setContactSending(true);
+    setContactStatus(null);
+
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/ingetec.electromecanica@gmail.com", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+      const result = await response.json();
+
+      if (!response.ok || result.success === false || result.success === "false") {
+        throw new Error(result.message || "No se pudo enviar la solicitud.");
+      }
+
+      form.reset();
+      setContactStatus({
+        type: "success",
+        message: "Tu solicitud fue enviada. Nos pondremos en contacto contigo pronto.",
+      });
+    } catch {
+      setContactStatus({
+        type: "error",
+        message: "No se pudo enviar. Intenta de nuevo o escríbenos a ingetec.electromecanica@gmail.com.",
+      });
+    } finally {
+      setContactSending(false);
+    }
+  };
 
   useEffect(() => {
     const dialog = serviceDialogRef.current;
@@ -379,12 +422,23 @@ function App() {
           </div>
           <form
             className="contact-form"
-            action="mailto:ingetec.electromecanica@gmail.com"
-            method="post"
-            encType="text/plain"
+            action="https://formsubmit.co/ingetec.electromecanica@gmail.com"
+            method="POST"
+            onSubmit={handleContactSubmit}
+            aria-busy={contactSending}
           >
             <h3>Solicita una cotización</h3>
             <p>Cuéntanos sobre tu proyecto y te asesoraremos.</p>
+            <input
+              className="contact-form__honeypot"
+              type="text"
+              name="_honey"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+            />
+            <input type="hidden" name="_subject" value="Nueva solicitud de cotización - INGETEC" />
+            <input type="hidden" name="_template" value="table" />
             <div className="form-row">
               <label>
                 Nombre completo
@@ -392,7 +446,7 @@ function App() {
               </label>
               <label>
                 Correo electrónico
-                <input type="email" name="correo" placeholder="tucorreo@ejemplo.com" required />
+                <input type="email" name="email" placeholder="tucorreo@ejemplo.com" required />
               </label>
             </div>
             <label>
@@ -408,8 +462,13 @@ function App() {
                 required
               />
             </label>
-            <button className="button button--yellow" type="submit">
-              Enviar solicitud <ArrowRight size={16} />
+            {contactStatus && (
+              <p className={`contact-form__status contact-form__status--${contactStatus.type}`} role={contactStatus.type === "error" ? "alert" : "status"}>
+                {contactStatus.message}
+              </p>
+            )}
+            <button className="button button--yellow" type="submit" disabled={contactSending}>
+              {contactSending ? "Enviando..." : "Enviar solicitud"} <ArrowRight size={16} />
             </button>
           </form>
         </section>
